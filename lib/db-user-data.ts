@@ -1,5 +1,12 @@
 import { getDB, generateId } from "./db";
 import type { User } from "@/types";
+import {
+  isVercelEnvironment,
+  createUserInMemory,
+  findUserByEmailInMemory,
+  findUserByIdInMemory,
+  updateUserInMemory,
+} from "./vercel-storage";
 
 export interface UserWithPassword extends User {
   password: string;
@@ -10,6 +17,11 @@ export interface UserWithPassword extends User {
 export async function createUser(
   userData: Omit<UserWithPassword, "id" | "createdAt" | "updatedAt">
 ): Promise<UserWithPassword> {
+  // Vercel 环境使用内存存储
+  if (isVercelEnvironment()) {
+    return createUserInMemory(userData);
+  }
+
   const db = await getDB();
   const id = generateId();
   const now = new Date().toISOString();
@@ -55,6 +67,11 @@ export async function createUser(
 }
 
 export async function findUserByEmail(email: string): Promise<UserWithPassword | undefined> {
+  // Vercel 环境使用内存存储
+  if (isVercelEnvironment()) {
+    return findUserByEmailInMemory(email);
+  }
+
   const db = await getDB();
   const stmt = db.prepare("SELECT * FROM users WHERE email = ? COLLATE NOCASE");
   stmt.bind([email]);
@@ -66,6 +83,11 @@ export async function findUserByEmail(email: string): Promise<UserWithPassword |
 }
 
 export async function findUserById(id: string): Promise<UserWithPassword | undefined> {
+  // Vercel 环境使用内存存储
+  if (isVercelEnvironment()) {
+    return findUserByIdInMemory(id);
+  }
+
   const db = await getDB();
   const stmt = db.prepare("SELECT * FROM users WHERE id = ?");
   stmt.bind([id]);
@@ -80,6 +102,11 @@ export async function updateUser(
   id: string,
   updates: Partial<UserWithPassword>
 ): Promise<UserWithPassword | undefined> {
+  // Vercel 环境使用内存存储
+  if (isVercelEnvironment()) {
+    return updateUserInMemory(id, updates);
+  }
+
   const db = await getDB();
   const sets: string[] = [];
   const values: any[] = [];

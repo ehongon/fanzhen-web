@@ -33,7 +33,7 @@ export async function getDB() {
         saveDB();
       }
     } catch {
-      // 如果无法访问文件系统（如边缘环境），使用内存数据库
+      // 如果无法访问文件系统（如Vercel等无服务器环境），使用内存数据库
       db = new sql.Database();
       initSchema();
     }
@@ -44,6 +44,11 @@ export async function getDB() {
   }
 
   return db;
+}
+
+// 检查是否在无服务器环境（如Vercel）
+export function isServerlessEnvironment(): boolean {
+  return !!process.env.VERCEL || !!process.env.NETLIFY || process.env.NODE_ENV === 'production';
 }
 
 // 保存数据库到文件（仅在服务端可用）
