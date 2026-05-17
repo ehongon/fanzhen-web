@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <!-- 墨黑底色 -->
+    <rect id="bg" width="512" height="512" rx="128" fill="#1a1a2e"/>
+    
+    <!-- 渐变定义 -->
+    <linearGradient id="flameGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#c75b39"/>
+      <stop offset="50%" stop-color="#d4a574"/>
+      <stop offset="100%" stop-color="#f5e6c8"/>
+    </linearGradient>
+    
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d4a574"/>
+      <stop offset="100%" stop-color="#c75b39"/>
+    </linearGradient>
+    
+    <!-- 柔光滤镜 -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="softGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="512" height="512" rx="128" fill="#1a1a2e"/>
+  
+  <!-- 外圆环 - 天道循环 -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="#d4a574" stroke-width="3" opacity="0.4"/>
+  <circle cx="256" cy="256" r="190" fill="none" stroke="#c75b39" stroke-width="1" opacity="0.3"/>
+  
+  <!-- 内圆环 -->
+  <circle cx="256" cy="256" r="170" fill="none" stroke="#d4a574" stroke-width="1" opacity="0.2"/>
+  
+  <!-- 修炼者人形 - 冥想姿态 -->
+  <g transform="translate(256, 280)">
+    <!-- 身体/脊柱 - 一道流动的光 -->
+    <path d="M 0,80 
+             Q -5,40 -8,0 
+             Q -10,-30 -5,-50
+             Q 0,-60 0,-70" 
+          fill="none" 
+          stroke="url(#flameGrad)" 
+          stroke-width="12" 
+          stroke-linecap="round"
+          filter="url(#softGlow)"/>
+    
+    <!-- 头部光环 -->
+    <circle cx="0" cy="-85" r="25" fill="none" stroke="#d4a574" stroke-width="2" opacity="0.6"/>
+    <circle cx="0" cy="-85" r="18" fill="none" stroke="#f5e6c8" stroke-width="1" opacity="0.8"/>
+    
+    <!-- 头部 -->
+    <ellipse cx="0" cy="-85" rx="14" ry="16" fill="#d4a574" opacity="0.9"/>
+    
+    <!-- 双肩 -->
+    <path d="M -35,-20 Q -20,-25 0,-22 Q 20,-25 35,-20" 
+          fill="none" 
+          stroke="#c75b39" 
+          stroke-width="6" 
+          stroke-linecap="round"/>
+    
+    <!-- 双臂 - 结印 -->
+    <path d="M -35,-20 Q -50,0 -45,25 Q -40,45 -25,50" 
+          fill="none" 
+          stroke="#c75b39" 
+          stroke-width="5" 
+          stroke-linecap="round"/>
+    <path d="M 35,-20 Q 50,0 45,25 Q 40,45 25,50" 
+          fill="none" 
+          stroke="#c75b39" 
+          stroke-width="5" 
+          stroke-linecap="round"/>
+    
+    <!-- 双手合十 -->
+    <ellipse cx="0" cy="52" rx="12" ry="8" fill="#d4a574" opacity="0.8"/>
+    
+    <!-- 下盘/莲花座 -->
+    <path d="M -60,75 Q -30,55 0,58 Q 30,55 60,75" 
+          fill="none" 
+          stroke="#c75b39" 
+          stroke-width="4" 
+          stroke-linecap="round"/>
+    <path d="M -50,85 Q -25,70 0,72 Q 25,70 50,85" 
+          fill="none" 
+          stroke="#c75b39" 
+          stroke-width="3" 
+          stroke-linecap="round" 
+          opacity="0.7"/>
+  </g>
+  
+  <!-- 头顶灵光 - 智慧显现 -->
+  <g transform="translate(256, 125)">
+    <!-- 主光芒 -->
+    <path d="M 0,0 Q -8,-25 0,-45 Q 8,-25 0,0" 
+          fill="url(#flameGrad)" 
+          opacity="0.9"
+          filter="url(#glow)"/>
+    
+    <!-- 左侧光芒 -->
+    <path d="M -5,5 Q -20,-15 -15,-35" 
+          fill="none" 
+          stroke="#d4a574" 
+          stroke-width="3" 
+          stroke-linecap="round"
+          opacity="0.7"/>
+    
+    <!-- 右侧光芒 -->
+    <path d="M 5,5 Q 20,-15 15,-35" 
+          fill="none" 
+          stroke="#d4a574" 
+          stroke-width="3" 
+          stroke-linecap="round"
+          opacity="0.7"/>
+    
+    <!-- 顶部光点 -->
+    <circle cx="0" cy="-50" r="4" fill="#f5e6c8" filter="url(#softGlow)"/>
+    <circle cx="-15" cy="-38" r="2" fill="#d4a574" opacity="0.8"/>
+    <circle cx="15" cy="-38" r="2" fill="#d4a574" opacity="0.8"/>
+  </g>
+  
+  <!-- 底部气脉流动 -->
+  <g transform="translate(256, 420)">
+    <path d="M -80,0 Q -40,-10 0,-5 Q 40,-10 80,0" 
+          fill="none" 
+          stroke="#c75b39" 
+          stroke-width="2" 
+          opacity="0.4"/>
+    <path d="M -60,8 Q -30,2 0,5 Q 30,2 60,8" 
+          fill="none" 
+          stroke="#d4a574" 
+          stroke-width="1.5" 
+          opacity="0.3"/>
+  </g>
+  
+  <!-- 四角装饰 - 暗合四象 -->
+  <g opacity="0.25">
+    <!-- 左上 - 青龙位 -->
+    <circle cx="120" cy="120" r="3" fill="#d4a574"/>
+    <!-- 右上 - 白虎位 -->
+    <circle cx="392" cy="120" r="3" fill="#d4a574"/>
+    <!-- 左下 - 玄武位 -->
+    <circle cx="120" cy="392" r="3" fill="#d4a574"/>
+    <!-- 右下 - 朱雀位 -->
+    <circle cx="392" cy="392" r="3" fill="#d4a574"/>
+  </g>
+  
+  <!-- 中心点 - 玄关一窍 -->
+  <circle cx="256" cy="256" r="2" fill="#f5e6c8" opacity="0.6"/>
+</svg>

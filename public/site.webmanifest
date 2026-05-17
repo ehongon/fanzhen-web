@@ -1,0 +1,21 @@
+{
+  "name": "凡真 - 炼体修真综合指导平台",
+  "short_name": "凡真",
+  "description": "整合儒释道医武等各派之长的炼体修真综合指导平台",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f1ea",
+  "theme_color": "#1a1a2e",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["lifestyle", "health", "education"],
+  "lang": "zh-CN",
+  "dir": "ltr"
+}
