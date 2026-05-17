@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600">
+  <defs>
+    <!-- 金色光点渐变 -->
+    <radialGradient id="goldGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(212,165,116,0.8)"/>
+      <stop offset="30%" stop-color="rgba(212,165,116,0.4)"/>
+      <stop offset="70%" stop-color="rgba(212,165,116,0.1)"/>
+      <stop offset="100%" stop-color="rgba(212,165,116,0)"/>
+    </radialGradient>
+
+    <!-- 上丹田光晕 -->
+    <radialGradient id="upperGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(139,111,174,0.6)"/>
+      <stop offset="50%" stop-color="rgba(139,111,174,0.2)"/>
+      <stop offset="100%" stop-color="rgba(139,111,174,0)"/>
+    </radialGradient>
+
+    <!-- 中丹田光晕 -->
+    <radialGradient id="middleGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(199,91,57,0.6)"/>
+      <stop offset="50%" stop-color="rgba(199,91,57,0.2)"/>
+      <stop offset="100%" stop-color="rgba(199,91,57,0)"/>
+    </radialGradient>
+
+    <!-- 下丹田光晕 -->
+    <radialGradient id="lowerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(212,165,116,0.6)"/>
+      <stop offset="50%" stop-color="rgba(212,165,116,0.2)"/>
+      <stop offset="100%" stop-color="rgba(212,165,116,0)"/>
+    </radialGradient>
+
+    <!-- 连接线渐变 -->
+    <linearGradient id="connectLine" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(139,111,174,0.3)"/>
+      <stop offset="50%" stop-color="rgba(199,91,57,0.3)"/>
+      <stop offset="100%" stop-color="rgba(212,165,116,0.3)"/>
+    </linearGradient>
+
+    <filter id="softBlur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="400" height="600" fill="transparent"/>
+
+  <!-- 标题 -->
+  <text x="200" y="30" text-anchor="middle" fill="#d4a574" font-size="16" font-family="serif" font-weight="bold">三丹田位置图</text>
+
+  <!-- ===== 人体轮廓 ===== -->
+  <g fill="none" stroke="#2d2d4a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5">
+    <!-- 头部 -->
+    <ellipse cx="200" cy="80" rx="35" ry="42"/>
+    <!-- 颈部 -->
+    <line x1="200" y1="122" x2="200" y2="140"/>
+    <!-- 肩膀 -->
+    <path d="M 130 145 Q 165 138 200 138 Q 235 138 270 145"/>
+    <!-- 躯干 -->
+    <path d="M 130 145 L 125 250 L 128 350 L 130 450 L 200 465 L 270 450 L 272 350 L 275 250 L 270 145"/>
+    <!-- 手臂 -->
+    <path d="M 130 145 Q 100 180 95 230"/>
+    <path d="M 270 145 Q 300 180 305 230"/>
+    <!-- 腿 -->
+    <path d="M 130 450 Q 120 510 125 570"/>
+    <path d="M 270 450 Q 280 510 275 570"/>
+  </g>
+
+  <!-- ===== 三丹田连接线 ===== -->
+  <line x1="200" y1="80" x2="200" y2="200" stroke="url(#connectLine)" stroke-width="2" stroke-dasharray="6,4" opacity="0.5"/>
+  <line x1="200" y1="200" x2="200" y2="320" stroke="url(#connectLine)" stroke-width="2" stroke-dasharray="6,4" opacity="0.5"/>
+  <line x1="200" y1="320" x2="200" y2="420" stroke="url(#connectLine)" stroke-width="2" stroke-dasharray="6,4" opacity="0.5"/>
+
+  <!-- ===== 上丹田（眉心） ===== -->
+  <g>
+    <!-- 光晕 -->
+    <circle cx="200" cy="65" r="25" fill="url(#upperGlow)" filter="url(#softBlur)"/>
+    <circle cx="200" cy="65" r="15" fill="url(#upperGlow)"/>
+    
+    <!-- 金色光点 -->
+    <circle cx="200" cy="65" r="6" fill="#d4a574"/>
+    <circle cx="200" cy="65" r="10" fill="url(#goldGlow)"/>
+    
+    <!-- 标注线 -->
+    <line x1="225" y1="65" x2="280" y2="65" stroke="#8b6fae" stroke-width="1.5" stroke-dasharray="4,2"/>
+    <circle cx="280" cy="65" r="3" fill="#8b6fae"/>
+    
+    <!-- 标签 -->
+    <text x="290" y="60" fill="#8b6fae" font-size="11" font-family="serif" font-weight="bold">上丹田</text>
+    <text x="290" y="75" fill="#8b6fae" font-size="9" font-family="serif" opacity="0.8">眉心 · 泥丸宫</text>
+  </g>
+
+  <!-- ===== 中丹田（膻中） ===== -->
+  <g>
+    <!-- 光晕 -->
+    <circle cx="200" cy="200" r="30" fill="url(#middleGlow)" filter="url(#softBlur)"/>
+    <circle cx="200" cy="200" r="18" fill="url(#middleGlow)"/>
+    
+    <!-- 金色光点 -->
+    <circle cx="200" cy="200" r="7" fill="#d4a574"/>
+    <circle cx="200" cy="200" r="12" fill="url(#goldGlow)"/>
+    
+    <!-- 标注线 -->
+    <line x1="230" y1="200" x2="280" y2="200" stroke="#c75b39" stroke-width="1.5" stroke-dasharray="4,2"/>
+    <circle cx="280" cy="200" r="3" fill="#c75b39"/>
+    
+    <!-- 标签 -->
+    <text x="290" y="195" fill="#c75b39" font-size="11" font-family="serif" font-weight="bold">中丹田</text>
+    <text x="290" y="210" fill="#c75b39" font-size="9" font-family="serif" opacity="0.8">膻中 · 绛宫</text>
+  </g>
+
+  <!-- ===== 下丹田（关元） ===== -->
+  <g>
+    <!-- 光晕 -->
+    <circle cx="200" cy="380" r="35" fill="url(#lowerGlow)" filter="url(#softBlur)"/>
+    <circle cx="200" cy="380" r="20" fill="url(#lowerGlow)"/>
+    
+    <!-- 金色光点 -->
+    <circle cx="200" cy="380" r="8" fill="#d4a574"/>
+    <circle cx="200" cy="380" r="14" fill="url(#goldGlow)"/>
+    
+    <!-- 标注线 -->
+    <line x1="235" y1="380" x2="280" y2="380" stroke="#d4a574" stroke-width="1.5" stroke-dasharray="4,2"/>
+    <circle cx="280" cy="380" r="3" fill="#d4a574"/>
+    
+    <!-- 标签 -->
+    <text x="290" y="375" fill="#d4a574" font-size="11" font-family="serif" font-weight="bold">下丹田</text>
+    <text x="290" y="390" fill="#d4a574" font-size="9" font-family="serif" opacity="0.8">关元 · 气海</text>
+  </g>
+
+  <!-- ===== 说明文字 ===== -->
+  <g transform="translate(20, 500)">
+    <rect x="0" y="0" width="360" height="85" rx="8" fill="rgba(26,26,46,0.8)" stroke="rgba(212,165,116,0.2)" stroke-width="1"/>
+    
+    <text x="180" y="18" text-anchor="middle" fill="#d4a574" font-size="10" font-family="serif" font-weight="bold">三丹田修炼要义</text>
+    
+    <text x="10" y="38" fill="#8b6fae" font-size="9" font-family="serif">上丹田：炼神还虚，凝神入定</text>
+    <text x="10" y="54" fill="#c75b39" font-size="9" font-family="serif">中丹田：炼气化神，心气合一</text>
+    <text x="10" y="70" fill="#d4a574" font-size="9" font-family="serif">下丹田：炼精化气，培元固本</text>
+  </g>
+</svg>

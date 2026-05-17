@@ -1,0 +1,209 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600">
+  <defs>
+    <!-- 金色渐变 -->
+    <linearGradient id="goldLine" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#d4a574"/>
+      <stop offset="50%" stop-color="#e4c9a0"/>
+      <stop offset="100%" stop-color="#d4a574"/>
+    </linearGradient>
+
+    <!-- 经脉颜色 -->
+    <linearGradient id="lungLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4a7c59"/>
+      <stop offset="100%" stop-color="#5a9c69"/>
+    </linearGradient>
+    <linearGradient id="heartLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c75b39"/>
+      <stop offset="100%" stop-color="#d97a5c"/>
+    </linearGradient>
+    <linearGradient id="liverLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5b8db8"/>
+      <stop offset="100%" stop-color="#7badc8"/>
+    </linearGradient>
+    <linearGradient id="spleenLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d4a574"/>
+      <stop offset="100%" stop-color="#e4c9a0"/>
+    </linearGradient>
+    <linearGradient id="kidneyLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8b6fae"/>
+      <stop offset="100%" stop-color="#ab8fce"/>
+    </linearGradient>
+    <linearGradient id="tripleLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7a9a6a"/>
+      <stop offset="100%" stop-color="#9aba8a"/>
+    </linearGradient>
+
+    <!-- 穴位发光 -->
+    <radialGradient id="pointGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(212,165,116,0.8)"/>
+      <stop offset="50%" stop-color="rgba(212,165,116,0.3)"/>
+      <stop offset="100%" stop-color="rgba(212,165,116,0)"/>
+    </radialGradient>
+
+    <filter id="softBlur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="400" height="600" fill="transparent"/>
+
+  <!-- 人体轮廓 -->
+  <g fill="none" stroke="#2d2d4a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6">
+    <!-- 头部 -->
+    <ellipse cx="200" cy="50" rx="35" ry="42"/>
+    <!-- 颈部 -->
+    <line x1="200" y1="92" x2="200" y2="110"/>
+    <!-- 肩膀 -->
+    <path d="M 120 115 Q 160 108 200 108 Q 240 108 280 115"/>
+    <!-- 躯干 -->
+    <path d="M 120 115 L 110 220 L 115 320 L 120 420 L 200 435 L 280 420 L 285 320 L 290 220 L 280 115"/>
+    <!-- 手臂 - 左 -->
+    <path d="M 120 115 Q 90 150 85 200 Q 80 250 85 300"/>
+    <!-- 手臂 - 右 -->
+    <path d="M 280 115 Q 310 150 315 200 Q 320 250 315 300"/>
+    <!-- 腿 - 左 -->
+    <path d="M 120 420 Q 110 480 115 540 Q 118 570 120 590"/>
+    <!-- 腿 - 右 -->
+    <path d="M 280 420 Q 290 480 285 540 Q 282 570 280 590"/>
+  </g>
+
+  <!-- ===== 任督二脉（加粗金色） ===== -->
+  <!-- 督脉（背部中线，从前方示意） -->
+  <path d="M 200 8 Q 200 50 200 100 Q 200 150 200 200 Q 200 250 200 300 Q 200 350 200 400 Q 200 420 200 435" 
+        fill="none" stroke="url(#goldLine)" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+  
+  <!-- 任脉（胸腹正中） -->
+  <path d="M 200 108 Q 200 150 200 200 Q 200 250 200 300 Q 200 350 200 400 Q 200 420 200 435" 
+        fill="none" stroke="url(#goldLine)" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+
+  <!-- ===== 手太阴肺经（绿色） ===== -->
+  <path d="M 200 108 Q 180 120 160 130 Q 140 140 120 150 Q 100 160 90 180 Q 85 200 85 220" 
+        fill="none" stroke="url(#lungLine)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 200 108 Q 220 120 240 130 Q 260 140 280 150 Q 300 160 310 180 Q 315 200 315 220" 
+        fill="none" stroke="url(#lungLine)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- ===== 手少阴心经（红色） ===== -->
+  <path d="M 200 130 Q 170 140 150 155 Q 130 170 120 190 Q 115 210 115 230" 
+        fill="none" stroke="url(#heartLine)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 200 130 Q 230 140 250 155 Q 270 170 280 190 Q 285 210 285 230" 
+        fill="none" stroke="url(#heartLine)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- ===== 足厥阴肝经（蓝色） ===== -->
+  <path d="M 200 200 Q 180 220 170 250 Q 160 280 155 320 Q 150 360 145 400 Q 140 440 135 480 Q 130 520 128 560" 
+        fill="none" stroke="url(#liverLine)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 200 200 Q 220 220 230 250 Q 240 280 245 320 Q 250 360 255 400 Q 260 440 265 480 Q 270 520 272 560" 
+        fill="none" stroke="url(#liverLine)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- ===== 足太阴脾经（金色） ===== -->
+  <path d="M 200 220 Q 185 240 175 270 Q 165 300 160 340 Q 155 380 150 420 Q 145 460 140 500 Q 138 540 138 580" 
+        fill="none" stroke="url(#spleenLine)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 200 220 Q 215 240 225 270 Q 235 300 240 340 Q 245 380 250 420 Q 255 460 260 500 Q 262 540 262 580" 
+        fill="none" stroke="url(#spleenLine)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- ===== 足少阴肾经（紫色） ===== -->
+  <path d="M 200 250 Q 190 280 185 320 Q 180 360 178 400 Q 176 440 175 480 Q 174 520 174 560" 
+        fill="none" stroke="url(#kidneyLine)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 200 250 Q 210 280 215 320 Q 220 360 222 400 Q 224 440 225 480 Q 226 520 226 560" 
+        fill="none" stroke="url(#kidneyLine)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- ===== 手少阳三焦经（青绿色） ===== -->
+  <path d="M 200 115 Q 170 125 150 140 Q 130 155 120 175 Q 110 195 108 215" 
+        fill="none" stroke="url(#tripleLine)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 200 115 Q 230 125 250 140 Q 270 155 280 175 Q 290 195 292 215" 
+        fill="none" stroke="url(#tripleLine)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- ===== 穴位标注 ===== -->
+  <!-- 头部穴位 -->
+  <g>
+    <circle cx="200" cy="8" r="5" fill="url(#pointGlow)"/>
+    <circle cx="200" cy="8" r="3" fill="#d4a574"/>
+    <text x="215" y="12" fill="#d4a574" font-size="9" font-family="serif">百会</text>
+  </g>
+
+  <!-- 眉心穴位 -->
+  <g>
+    <circle cx="200" cy="35" r="5" fill="url(#pointGlow)"/>
+    <circle cx="200" cy="35" r="3" fill="#d4a574"/>
+    <text x="215" y="39" fill="#d4a574" font-size="9" font-family="serif">印堂</text>
+  </g>
+
+  <!-- 膻中穴位 -->
+  <g>
+    <circle cx="200" cy="165" r="5" fill="url(#pointGlow)"/>
+    <circle cx="200" cy="165" r="3" fill="#c75b39"/>
+    <text x="215" y="169" fill="#c75b39" font-size="9" font-family="serif">膻中</text>
+  </g>
+
+  <!-- 中脘穴位 -->
+  <g>
+    <circle cx="200" cy="220" r="5" fill="url(#pointGlow)"/>
+    <circle cx="200" cy="220" r="3" fill="#d4a574"/>
+    <text x="215" y="224" fill="#d4a574" font-size="9" font-family="serif">中脘</text>
+  </g>
+
+  <!-- 丹田穴位 -->
+  <g>
+    <circle cx="200" cy="280" r="6" fill="url(#pointGlow)"/>
+    <circle cx="200" cy="280" r="4" fill="#d4a574"/>
+    <text x="215" y="284" fill="#d4a574" font-size="9" font-family="serif">丹田</text>
+  </g>
+
+  <!-- 关元穴位 -->
+  <g>
+    <circle cx="200" cy="340" r="5" fill="url(#pointGlow)"/>
+    <circle cx="200" cy="340" r="3" fill="#d4a574"/>
+    <text x="215" y="344" fill="#d4a574" font-size="9" font-family="serif">关元</text>
+  </g>
+
+  <!-- 会阴穴位 -->
+  <g>
+    <circle cx="200" cy="435" r="5" fill="url(#pointGlow)"/>
+    <circle cx="200" cy="435" r="3" fill="#d4a574"/>
+    <text x="215" y="439" fill="#d4a574" font-size="9" font-family="serif">会阴</text>
+  </g>
+
+  <!-- 命门穴位 -->
+  <g>
+    <circle cx="185" cy="250" r="5" fill="url(#pointGlow)"/>
+    <circle cx="185" cy="250" r="3" fill="#5b8db8"/>
+    <text x="155" y="254" fill="#5b8db8" font-size="9" font-family="serif" text-anchor="end">命门</text>
+  </g>
+
+  <!-- 神阙穴位 -->
+  <g>
+    <circle cx="215" cy="250" r="5" fill="url(#pointGlow)"/>
+    <circle cx="215" cy="250" r="3" fill="#8b6fae"/>
+    <text x="245" y="254" fill="#8b6fae" font-size="9" font-family="serif">神阙</text>
+  </g>
+
+  <!-- 足三里穴位 -->
+  <g>
+    <circle cx="140" cy="480" r="4" fill="url(#pointGlow)"/>
+    <circle cx="140" cy="480" r="2.5" fill="#4a7c59"/>
+    <text x="125" y="484" fill="#4a7c59" font-size="8" font-family="serif" text-anchor="end">足三里</text>
+  </g>
+  <g>
+    <circle cx="260" cy="480" r="4" fill="url(#pointGlow)"/>
+    <circle cx="260" cy="480" r="2.5" fill="#4a7c59"/>
+    <text x="275" y="484" fill="#4a7c59" font-size="8" font-family="serif">足三里</text>
+  </g>
+
+  <!-- 图例 -->
+  <g transform="translate(20, 520)">
+    <rect x="0" y="0" width="160" height="70" rx="8" fill="rgba(26,26,46,0.8)" stroke="rgba(212,165,116,0.2)" stroke-width="1"/>
+    <text x="80" y="18" text-anchor="middle" fill="#d4a574" font-size="10" font-family="serif" font-weight="bold">经脉图例</text>
+    
+    <line x1="15" y1="32" x2="35" y2="32" stroke="url(#goldLine)" stroke-width="3"/>
+    <text x="42" y="36" fill="#d4a574" font-size="8" font-family="serif">任督二脉</text>
+    
+    <line x1="85" y1="32" x2="105" y2="32" stroke="url(#lungLine)" stroke-width="2"/>
+    <text x="112" y="36" fill="#4a7c59" font-size="8" font-family="serif">十二正经</text>
+    
+    <circle cx="25" cy="52" r="3" fill="#d4a574"/>
+    <text x="35" y="56" fill="#d4a574" font-size="8" font-family="serif">主要穴位</text>
+    
+    <circle cx="95" cy="52" r="4" fill="url(#pointGlow)"/>
+    <text x="105" y="56" fill="#d4a574" font-size="8" font-family="serif">发光效果</text>
+  </g>
+</svg>

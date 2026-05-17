@@ -1,0 +1,267 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* 新中式禅意配色 */
+    --background: 40 33% 94%; /* 宣纸色 #f5f0e8 */
+    --foreground: 0 0% 18%; /* 炭灰 #2d2d2d */
+    --card: 40 30% 96%;
+    --card-foreground: 0 0% 18%;
+    --popover: 40 33% 94%;
+    --popover-foreground: 0 0% 18%;
+    --primary: 14 55% 50%; /* 朱砂 #c75b39 */
+    --primary-foreground: 40 33% 94%;
+    --secondary: 40 20% 88%;
+    --secondary-foreground: 0 0% 18%;
+    --muted: 40 15% 90%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 30 45% 65%; /* 金箔 #d4a574 */
+    --accent-foreground: 0 0% 18%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 40 33% 94%;
+    --border: 40 15% 85%;
+    --input: 40 15% 85%;
+    --ring: 14 55% 50%;
+    --radius: 0.5rem;
+    
+    /* 自定义颜色变量 */
+    --ink-black: 240 33% 14%; /* 墨黑 #1a1a2e */
+    --cinnabar: 14 55% 50%; /* 朱砂 #c75b39 */
+    --gold-foil: 30 45% 65%; /* 金箔 #d4a574 */
+    --rice-paper: 40 33% 94%; /* 宣纸 #f5f0e8 */
+    --charcoal: 0 0% 18%; /* 炭灰 #2d2d2d */
+    --light-gray: 0 0% 54%; /* 浅灰 #8a8a8a */
+  }
+
+  .dark {
+    --background: 240 33% 14%;
+    --foreground: 40 33% 94%;
+    --card: 240 30% 18%;
+    --card-foreground: 40 33% 94%;
+    --popover: 240 30% 18%;
+    --popover-foreground: 40 33% 94%;
+    --primary: 14 55% 50%;
+    --primary-foreground: 40 33% 94%;
+    --secondary: 240 20% 25%;
+    --secondary-foreground: 40 33% 94%;
+    --muted: 240 20% 25%;
+    --muted-foreground: 40 15% 65%;
+    --accent: 30 45% 65%;
+    --accent-foreground: 240 33% 14%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 40 33% 94%;
+    --border: 240 20% 25%;
+    --input: 240 20% 25%;
+    --ring: 14 55% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 600;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .font-serif-cn {
+    font-family: 'Noto Serif SC', serif;
+  }
+  
+  .font-sans-cn {
+    font-family: 'Noto Sans SC', sans-serif;
+  }
+  
+  /* 隐藏滚动条 */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* 安全区域适配 */
+  .safe-area-pb {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  
+  .safe-area-pt {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  
+  /* 触摸优化 */
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+  
+  /* 宣纸纹理背景 */
+  .bg-rice-paper {
+    background-color: hsl(var(--rice-paper));
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+  
+  /* 墨黑渐变 */
+  .bg-ink-gradient {
+    background: linear-gradient(135deg, hsl(240 33% 10%) 0%, hsl(240 33% 18%) 100%);
+  }
+  
+  /* 朱砂渐变 */
+  .bg-cinnabar-gradient {
+    background: linear-gradient(135deg, hsl(14 55% 45%) 0%, hsl(14 55% 55%) 100%);
+  }
+  
+  /* 金箔文字效果 */
+  .text-gold-foil {
+    background: linear-gradient(135deg, hsl(30 45% 55%) 0%, hsl(30 45% 75%) 50%, hsl(30 45% 55%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* 微光扫过效果 */
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+  }
+  
+  .shimmer:hover::after {
+    left: 100%;
+  }
+  
+  /* 呼吸动画 */
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.05); opacity: 1; }
+  }
+  
+  .animate-breathe {
+    animation: breathe 4s ease-in-out infinite;
+  }
+  
+  /* 气流动画 */
+  @keyframes qi-flow {
+    0% { transform: translateX(-100%) rotate(0deg); }
+    100% { transform: translateX(100%) rotate(360deg); }
+  }
+  
+  .animate-qi-flow {
+    animation: qi-flow 8s linear infinite;
+  }
+  
+  /* 淡入上浮 */
+  @keyframes fade-in-up {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
+  }
+  
+  /* 粒子效果容器 */
+  .particles-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* 经脉路径动画 */
+  @keyframes draw-path {
+    0% { stroke-dashoffset: 1000; }
+    100% { stroke-dashoffset: 0; }
+  }
+  
+  .animate-draw-path {
+    stroke-dasharray: 1000;
+    animation: draw-path 3s ease-in-out forwards;
+  }
+}
+
+/* 响应式字体大小 */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: 1.5rem !important;
+  }
+  
+  h2 {
+    font-size: 1.25rem !important;
+  }
+  
+  h3 {
+    font-size: 1.125rem !important;
+  }
+}
+
+/* 平板字体 */
+@media (min-width: 641px) and (max-width: 1024px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+/* 桌面字体 */
+@media (min-width: 1025px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* 触摸设备优化 */
+@media (hover: none) {
+  .hover\:shadow-card-hover:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  button, a {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* 减少动画（用户偏好） */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

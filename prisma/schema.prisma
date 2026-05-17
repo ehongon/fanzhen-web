@@ -1,0 +1,180 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(uuid())
+  email         String   @unique
+  phone         String?  @unique
+  passwordHash  String
+  name          String
+  avatar        String?
+  role          Role     @default(USER)
+  status        Status   @default(ACTIVE)
+  currentStage  Stage?
+  lastActiveAt  DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  contents       Content[]
+  progress       UserProgress[]
+  comments       Comment[]
+  favorites      Favorite[]
+  contentVersions ContentVersion[]
+
+  @@index([email])
+  @@index([role])
+  @@index([status])
+}
+
+enum Role {
+  USER
+  EDITOR
+  ADMIN
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+  BANNED
+}
+
+enum Stage {
+  LIANXING
+  LIANJING
+  LIANQI
+  LIANSHEN
+  LIANXU
+}
+
+model Content {
+  id          String       @id @default(uuid())
+  title       String
+  slug        String       @unique
+  type        ContentType
+  stage       Stage?
+  subtype     String?
+  excerpt     String?
+  body        String?
+  authorId    String
+  status      ContentStatus @default(DRAFT)
+  viewCount   Int          @default(0)
+  likeCount   Int          @default(0)
+  isFeatured  Boolean      @default(false)
+  publishedAt DateTime?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  author       User              @relation(fields: [authorId], references: [id])
+  comments     Comment[]
+  favorites    Favorite[]
+  versions     ContentVersion[]
+
+  @@index([type])
+  @@index([stage])
+  @@index([status])
+  @@index([slug])
+  @@index([publishedAt])
+}
+
+enum ContentType {
+  GONGFA
+  DIANJI
+  ARTICLE
+  CASE
+  QA
+}
+
+enum ContentStatus {
+  DRAFT
+  PENDING
+  PUBLISHED
+  ARCHIVED
+}
+
+model ContentVersion {
+  id            String   @id @default(uuid())
+  contentId     String
+  version       Int
+  title         String?
+  body          String?
+  changeSummary String?
+  editorId      String
+  createdAt     DateTime @default(now())
+
+  content Content @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  editor  User    @relation(fields: [editorId], references: [id])
+
+  @@unique([contentId, version])
+  @@index([contentId])
+  @@index([editorId])
+}
+
+model Comment {
+  id        String        @id @default(uuid())
+  contentId String?
+  userId    String
+  parentId  String?
+  body      String
+  likeCount Int           @default(0)
+  status    CommentStatus @default(PUBLISHED)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  content   Content?  @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  user      User      @relation(fields: [userId], references: [id])
+  parent    Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
+  replies   Comment[] @relation("CommentReplies")
+
+  @@index([contentId])
+  @@index([userId])
+  @@index([parentId])
+}
+
+enum CommentStatus {
+  PENDING
+  PUBLISHED
+  HIDDEN
+  DELETED
+}
+
+model UserProgress {
+  id              String   @id @default(uuid())
+  userId          String
+  stage           Stage
+  level           String?
+  methods         String[] @default([])
+  notes           String?
+  recordDate      DateTime
+  durationMinutes Int?
+  feeling         String?
+  physicalState   String?
+  mentalState     String?
+  createdAt       DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([recordDate])
+  @@index([stage])
+}
+
+model Favorite {
+  id        String   @id @default(uuid())
+  userId    String
+  contentId String
+  note      String?
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  content Content @relation(fields: [contentId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, contentId])
+  @@index([userId])
+  @@index([contentId])
+}

@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500">
+  <defs>
+    <!-- 肺部渐变 -->
+    <radialGradient id="lungGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(91,141,184,0.2)"/>
+      <stop offset="50%" stop-color="rgba(91,141,184,0.1)"/>
+      <stop offset="100%" stop-color="rgba(91,141,184,0.05)"/>
+    </radialGradient>
+
+    <!-- 气流渐变 -->
+    <linearGradient id="airFlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(212,165,116,0.6)"/>
+      <stop offset="100%" stop-color="rgba(212,165,116,0.1)"/>
+    </linearGradient>
+
+    <!-- 呼气气流 -->
+    <linearGradient id="exhaleFlow" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="rgba(199,91,57,0.4)"/>
+      <stop offset="100%" stop-color="rgba(199,91,57,0.1)"/>
+    </linearGradient>
+
+    <filter id="softBlur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="400" height="500" fill="transparent"/>
+
+  <!-- 标题 -->
+  <text x="200" y="30" text-anchor="middle" fill="#d4a574" font-size="16" font-family="serif" font-weight="bold">呼吸示意图</text>
+
+  <!-- ===== 人体轮廓 ===== -->
+  <g fill="none" stroke="#2d2d4a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5">
+    <!-- 头部 -->
+    <ellipse cx="200" cy="70" rx="30" ry="36"/>
+    <!-- 颈部 -->
+    <line x1="200" y1="106" x2="200" y2="125"/>
+    <!-- 肩膀 -->
+    <path d="M 140 130 Q 170 125 200 125 Q 230 125 260 130"/>
+    <!-- 躯干 -->
+    <path d="M 140 130 L 135 200 L 138 280 L 200 295 L 262 280 L 265 200 L 260 130"/>
+    <!-- 手臂 -->
+    <path d="M 140 130 Q 115 160 110 200"/>
+    <path d="M 260 130 Q 285 160 290 200"/>
+  </g>
+
+  <!-- ===== 气管 ===== -->
+  <path d="M 200 106 L 200 140" fill="none" stroke="#5b8db8" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+  <path d="M 200 140 Q 200 150 200 155" fill="none" stroke="#5b8db8" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- ===== 左肺 ===== -->
+  <g>
+    <!-- 肺叶轮廓 -->
+    <path d="M 200 155 Q 180 150 165 160 Q 150 170 145 185 Q 140 200 142 215 Q 145 230 155 240 Q 165 250 180 252 Q 190 253 195 250 Q 198 245 198 240 Q 198 230 198 220 Q 198 200 198 180 Q 198 165 200 155" 
+          fill="url(#lungGrad)" stroke="#5b8db8" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+    
+    <!-- 肺叶纹理 -->
+    <path d="M 195 165 Q 180 170 170 180" fill="none" stroke="#5b8db8" stroke-width="1" opacity="0.4"/>
+    <path d="M 195 185 Q 175 190 165 200" fill="none" stroke="#5b8db8" stroke-width="1" opacity="0.4"/>
+    <path d="M 195 205 Q 178 210 170 220" fill="none" stroke="#5b8db8" stroke-width="1" opacity="0.4"/>
+    <path d="M 195 225 Q 180 230 175 235" fill="none" stroke="#5b8db8" stroke-width="1" opacity="0.4"/>
+  </g>
+
+  <!-- ===== 右肺 ===== -->
+  <g>
+    <!-- 肺叶轮廓 -->
+    <path d="M 200 155 Q 220 150 235 160 Q 250 170 255 185 Q 260 200 258 215 Q 255 230 245 240 Q 235 250 220 252 Q 210 253 205 250 Q 202 245 202 240 Q 202 230 202 220 Q 202 200 202 180 Q 202 165 200 155" 
+          fill="url(#lungGrad)" stroke="#5b8db8" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+    
+    <!-- 肺叶纹理 -->
+    <path d="M 205 165 Q 220 170 230 180" fill="none" stroke="#5b8db8" stroke-width="1" opacity="0.4"/>
+    <path d="M 205 185 Q 225 190 235 200" fill="none" stroke="#5b8db8" stroke-width="1" opacity="0.4"/>
+    <path d="M 205 205 Q 222 210 230 220" fill="none" stroke="#5b8db8" stroke-width="1" opacity="0.4"/>
+    <path d="M 205 225 Q 220 230 225 235" fill="none" stroke="#5b8db8" stroke-width="1" opacity="0.4"/>
+  </g>
+
+  <!-- ===== 吸气箭头 ===== -->
+  <g>
+    <text x="200" y="320" text-anchor="middle" fill="#4a7c59" font-size="12" font-family="serif" font-weight="bold">吸气</text>
+    
+    <!-- 向下箭头 -->
+    <path d="M 200 330 L 200 370" fill="none" stroke="#4a7c59" stroke-width="2" stroke-linecap="round" marker-end="url(#inhaleArrow)"/>
+    <polygon points="195,365 200,375 205,365" fill="#4a7c59"/>
+    
+    <!-- 气流指示 -->
+    <path d="M 180 340 Q 190 350 200 355 Q 210 350 220 340" fill="none" stroke="url(#airFlow)" stroke-width="3" opacity="0.6"/>
+    <path d="M 185 330 Q 195 340 200 345 Q 205 340 215 330" fill="none" stroke="url(#airFlow)" stroke-width="2" opacity="0.4"/>
+    
+    <!-- 肺部扩张示意 -->
+    <ellipse cx="200" cy="200" rx="45" ry="55" fill="none" stroke="#4a7c59" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
+  </g>
+
+  <!-- ===== 呼气箭头 ===== -->
+  <g>
+    <text x="200" y="420" text-anchor="middle" fill="#c75b39" font-size="12" font-family="serif" font-weight="bold">呼气</text>
+    
+    <!-- 向上箭头 -->
+    <path d="M 200 410 L 200 380" fill="none" stroke="#c75b39" stroke-width="2" stroke-linecap="round"/>
+    <polygon points="195,385 200,375 205,385" fill="#c75b39"/>
+    
+    <!-- 气流指示 -->
+    <path d="M 180 400 Q 190 390 200 385 Q 210 390 220 400" fill="none" stroke="url(#exhaleFlow)" stroke-width="3" opacity="0.6"/>
+    <path d="M 185 410 Q 195 400 200 395 Q 205 400 215 410" fill="none" stroke="url(#exhaleFlow)" stroke-width="2" opacity="0.4"/>
+    
+    <!-- 肺部收缩示意 -->
+    <ellipse cx="200" cy="200" rx="35" ry="45" fill="none" stroke="#c75b39" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
+  </g>
+
+  <!-- ===== 气流方向标注 ===== -->
+  <g transform="translate(320, 180)">
+    <rect x="0" y="0" width="70" height="90" rx="8" fill="rgba(26,26,46,0.8)" stroke="rgba(212,165,116,0.2)" stroke-width="1"/>
+    <text x="35" y="18" text-anchor="middle" fill="#d4a574" font-size="9" font-family="serif" font-weight="bold">气流方向</text>
+    
+    <!-- 吸气 -->
+    <line x1="15" y1="35" x2="15" y2="55" stroke="#4a7c59" stroke-width="2" marker-end="url(#inhaleArrow)"/>
+    <polygon points="12,52 15,58 18,52" fill="#4a7c59"/>
+    <text x="28" y="48" fill="#4a7c59" font-size="8" font-family="serif">入</text>
+    
+    <!-- 呼气 -->
+    <line x1="15" y1="75" x2="15" y2="60" stroke="#c75b39" stroke-width="2"/>
+    <polygon points="12,63 15,57 18,63" fill="#c75b39"/>
+    <text x="28" y="68" fill="#c75b39" font-size="8" font-family="serif">出</text>
+  </g>
+
+  <!-- 底部说明 -->
+  <text x="200" y="470" text-anchor="middle" fill="#d4a574" font-size="10" font-family="serif" opacity="0.7">鼻吸口呼，气沉丹田</text>
+  <text x="200" y="488" text-anchor="middle" fill="#d4a574" font-size="10" font-family="serif" opacity="0.7">吸气时腹部隆起，呼气时腹部内收</text>
+</svg>
