@@ -236,20 +236,22 @@ export default function HeroSection() {
           transition={{ delay: 2.2, duration: 0.8 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <motion.button
+          <motion.a
+            href="/assessment"
             whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(199, 91, 57, 0.4)" }}
             whileTap={{ scale: 0.95 }}
-            className="px-6 sm:px-8 py-3 bg-cinnabar hover:bg-cinnabar-light text-rice rounded-full text-sm font-medium transition-colors duration-300 shadow-lg shadow-cinnabar/30 min-h-[44px]"
+            className="px-6 sm:px-8 py-3 bg-cinnabar hover:bg-cinnabar-light text-rice rounded-full text-sm font-medium transition-colors duration-300 shadow-lg shadow-cinnabar/30 min-h-[44px] inline-flex items-center justify-center"
           >
             开始修炼
-          </motion.button>
-          <motion.button
+          </motion.a>
+          <motion.a
+            href="/gongfa"
             whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(212, 165, 116, 0.3)" }}
             whileTap={{ scale: 0.95 }}
-            className="px-6 sm:px-8 py-3 border border-gold/40 text-gold hover:bg-gold/10 rounded-full text-sm font-medium transition-colors duration-300 min-h-[44px]"
+            className="px-6 sm:px-8 py-3 border border-gold/40 text-gold hover:bg-gold/10 rounded-full text-sm font-medium transition-colors duration-300 min-h-[44px] inline-flex items-center justify-center"
           >
-            探索体系
-          </motion.button>
+            探索功法
+          </motion.a>
         </motion.div>
       </div>
 
