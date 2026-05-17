@@ -79,9 +79,9 @@ export function RegisterForm() {
 
       if (data.success) {
         login(data.data.user, data.data.token);
-        // 延迟刷新以确保cookie已设置
+        // 注册成功后引导到自我检测页面
         setTimeout(() => {
-          window.location.href = "/";
+          window.location.href = "/assessment";
         }, 100);
       } else {
         setGeneralError(data.error?.message || "注册失败");

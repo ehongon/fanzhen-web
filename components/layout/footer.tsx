@@ -2,32 +2,42 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { BookOpen, Flame, Users, Brain, MessageCircle } from "lucide-react";
+import { BookOpen, Flame, Users, Brain, MessageCircle, Mail } from "lucide-react";
 
 const footerLinks = {
   修炼: [
     { label: "修炼体系", href: "/system" },
     { label: "功法数据库", href: "/gongfa" },
-    { label: "阶段指南", href: "/system/stage-1" },
+    { label: "自我检测", href: "/assessment" },
+    { label: "修炼记录", href: "/profile/practice" },
   ],
   资源: [
     { label: "典籍文献", href: "/dianji" },
     { label: "AI辅导", href: "/ai" },
-    { label: "修炼日志", href: "/profile" },
+    { label: "各派资料", href: "/schools" },
+    { label: "修炼日志", href: "/profile/diary" },
   ],
   社区: [
     { label: "讨论区", href: "/community" },
     { label: "经验分享", href: "/community/articles" },
     { label: "修炼问答", href: "/community/qa" },
+    { label: "寻找同修", href: "/fellowship" },
   ],
   关于: [
     { label: "关于凡真", href: "/about" },
-    { label: "联系我们", href: "/contact" },
+    { label: "联系我们", href: "mailto:ehongoncao@gmail.com" },
     { label: "隐私政策", href: "/privacy" },
+    { label: "使用条款", href: "/terms" },
   ],
 };
 
-const icons = [BookOpen, Flame, Users, Brain, MessageCircle];
+const socialLinks = [
+  { icon: BookOpen, label: "典籍", href: "/dianji" },
+  { icon: Flame, label: "修炼", href: "/system" },
+  { icon: Users, label: "同修", href: "/fellowship" },
+  { icon: Brain, label: "AI辅导", href: "/ai" },
+  { icon: MessageCircle, label: "社区", href: "/community" },
+];
 
 export default function Footer() {
   return (
@@ -46,24 +56,31 @@ export default function Footer() {
                   真
                 </span>
               </Link>
-              <p className="text-sm text-rice/50 leading-relaxed">
+              <p className="text-sm text-rice/50 leading-relaxed mb-4">
                 凡人之躯，真人之道。
                 <br />
                 探索生命科学的智慧，
                 <br />
                 开启你的修炼之旅。
               </p>
+              <a
+                href="mailto:ehongoncao@gmail.com"
+                className="inline-flex items-center gap-2 text-sm text-rice/50 hover:text-gold transition-colors"
+              >
+                <Mail className="w-4 h-4" />
+                ehongoncao@gmail.com
+              </a>
             </div>
 
             {/* Links */}
-            {Object.entries(footerLinks).map(([category, links], catIndex) => (
+            {Object.entries(footerLinks).map(([category, links]) => (
               <div key={category}>
                 <h3 className="text-sm font-semibold text-gold mb-4 tracking-wider">
                   {category}
                 </h3>
                 <ul className="space-y-3">
                   {links.map((link) => (
-                    <li key={link.href}>
+                    <li key={link.label}>
                       <Link
                         href={link.href}
                         className="text-sm text-rice/50 hover:text-gold transition-colors duration-300"
@@ -90,14 +107,16 @@ export default function Footer() {
               &copy; {new Date().getFullYear()} 凡真. 保留所有权利.
             </motion.p>
             <div className="flex items-center space-x-6">
-              {icons.map((Icon, index) => (
-                <motion.button
+              {socialLinks.map((link, index) => (
+                <motion.a
                   key={index}
+                  href={link.href}
                   whileHover={{ scale: 1.2, color: "#d4a574" }}
                   className="text-rice/30 hover:text-gold transition-colors"
+                  title={link.label}
                 >
-                  <Icon className="w-4 h-4" />
-                </motion.button>
+                  <link.icon className="w-4 h-4" />
+                </motion.a>
               ))}
             </div>
           </div>

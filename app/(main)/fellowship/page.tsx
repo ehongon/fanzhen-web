@@ -15,6 +15,9 @@ import {
   Calendar,
   Flame,
   ChevronRight,
+  Mountain,
+  Target,
+  Award,
 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -188,24 +191,36 @@ export default function FellowshipPage() {
     p.participants.includes(currentUserId)
   ).length;
 
+  // 模拟个人修炼进度数据（后续从数据库获取）
+  const myPracticeProgress = {
+    currentStage: "炼形化精",
+    currentLevel: 3,
+    totalExp: 1250,
+    nextLevelExp: 2000,
+    streakDays: 7,
+    totalDays: 45,
+    dailyGoal: 30,
+    todayProgress: 20,
+  };
+
   // 顶部统计
   const topStats = [
     {
-      label: "我的道场",
-      value: myTeams.length,
-      icon: Users,
+      label: "当前阶段",
+      value: `${myPracticeProgress.currentStage} ${myPracticeProgress.currentLevel}级`,
+      icon: Mountain,
       color: COLORS.team,
+    },
+    {
+      label: "连续打卡",
+      value: `${myPracticeProgress.streakDays}天`,
+      icon: Target,
+      color: COLORS.friend,
     },
     {
       label: "我的道友",
       value: acceptedFriends.length,
       icon: UserPlus,
-      color: COLORS.friend,
-    },
-    {
-      label: "组队修炼",
-      value: totalPracticeCount,
-      icon: Swords,
       color: COLORS.practice,
     },
     {
@@ -282,6 +297,113 @@ export default function FellowshipPage() {
             );
           })}
         </div>
+
+        {/* 修炼之旅进度板块 */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="rounded-2xl border border-gold/20 p-6 mb-8 bg-gradient-to-br from-gold/5 to-transparent"
+        >
+          <div className="flex items-center justify-between mb-5">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gold/10 border border-gold/30">
+                <Award className="w-5 h-5 text-gold" />
+              </div>
+              <div>
+                <h2 className="text-xl font-bold text-rice">我的修炼之旅</h2>
+                <p className="text-sm text-rice/50">记录每一步成长，见证蜕变之路</p>
+              </div>
+            </div>
+            <Link href="/profile">
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-gold/30 text-gold hover:bg-gold/10 text-xs"
+              >
+                查看详情
+                <ChevronRight className="w-3 h-3 ml-1" />
+              </Button>
+            </Link>
+          </div>
+
+          {/* 修炼进度条 */}
+          <div className="mb-6">
+            <div className="flex justify-between text-sm mb-2">
+              <span className="text-rice/70">
+                {myPracticeProgress.currentStage} 第{myPracticeProgress.currentLevel}级
+              </span>
+              <span className="text-gold">
+                {myPracticeProgress.totalExp} / {myPracticeProgress.nextLevelExp} XP
+              </span>
+            </div>
+            <div className="h-3 bg-ink rounded-full overflow-hidden border border-gold/10">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: `${(myPracticeProgress.totalExp / myPracticeProgress.nextLevelExp) * 100}%` }}
+                transition={{ duration: 1, delay: 0.5 }}
+                className="h-full bg-gradient-to-r from-gold to-gold/70 rounded-full"
+              />
+            </div>
+          </div>
+
+          {/* 今日修炼目标 */}
+          <div className="grid grid-cols-3 gap-4">
+            <div className="flex items-center gap-3 p-4 rounded-xl border border-gold/10 bg-gold/5">
+              <Target className="w-5 h-5 text-gold/70" />
+              <div>
+                <div className="text-lg font-bold text-rice">
+                  {myPracticeProgress.todayProgress}/{myPracticeProgress.dailyGoal}分钟
+                </div>
+                <div className="text-xs text-rice/50">今日修炼</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 p-4 rounded-xl border border-gold/10 bg-gold/5">
+              <Flame className="w-5 h-5 text-orange-400/70" />
+              <div>
+                <div className="text-lg font-bold text-rice">
+                  {myPracticeProgress.streakDays}天
+                </div>
+                <div className="text-xs text-rice/50">连续打卡</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 p-4 rounded-xl border border-gold/10 bg-gold/5">
+              <Calendar className="w-5 h-5 text-gold/70" />
+              <div>
+                <div className="text-lg font-bold text-rice">
+                  {myPracticeProgress.totalDays}天
+                </div>
+                <div className="text-xs text-rice/50">累计修炼</div>
+              </div>
+            </div>
+          </div>
+
+          {/* 快捷操作 */}
+          <div className="flex gap-3 mt-6">
+            <Link href="/profile/practice" className="flex-1">
+              <Button className="w-full bg-gold/20 hover:bg-gold/30 text-gold border border-gold/30">
+                <Zap className="w-4 h-4 mr-2" />
+                开始修炼
+              </Button>
+            </Link>
+            <Link href="/profile/diary" className="flex-1">
+              <Button
+                variant="outline"
+                className="w-full border-gold/30 text-gold hover:bg-gold/10"
+              >
+                记录日志
+              </Button>
+            </Link>
+            <Link href="/assessment" className="flex-1">
+              <Button
+                variant="outline"
+                className="w-full border-gold/30 text-gold hover:bg-gold/10"
+              >
+                重新测评
+              </Button>
+            </Link>
+          </div>
+        </motion.section>
 
         {/* 板块一：我的道场 */}
         <motion.section
