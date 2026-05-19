@@ -10,14 +10,16 @@ import {
   Flame,
   TrendingUp,
   Clock,
+  FileQuestion,
 } from "lucide-react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import PostCard from "@/components/community/post-card";
 import QACard from "@/components/community/qa-card";
 import PostDetail from "@/components/community/post-detail";
 
-type TabType = "experiences" | "qa" | "diary";
+type TabType = "experiences" | "qa" | "diary" | "faq";
 
 interface Post {
   id: string;
@@ -79,6 +81,7 @@ const tabs = [
   { id: "experiences" as TabType, label: "心得分享", icon: BookOpen },
   { id: "qa" as TabType, label: "问答讨论", icon: HelpCircle },
   { id: "diary" as TabType, label: "修炼日记", icon: PenLine },
+  { id: "faq" as TabType, label: "FAQ", icon: FileQuestion },
 ];
 
 const samplePosts: Post[] = [
@@ -324,6 +327,8 @@ export default function CommunityPage() {
         return "提问";
       case "diary":
         return "记日记";
+      case "faq":
+        return "查看全部";
     }
   };
 
@@ -335,6 +340,8 @@ export default function CommunityPage() {
         return <HelpCircle className="w-4 h-4" />;
       case "diary":
         return <BookOpen className="w-4 h-4" />;
+      case "faq":
+        return <FileQuestion className="w-4 h-4" />;
     }
   };
 
@@ -405,13 +412,22 @@ export default function CommunityPage() {
             })}
           </div>
 
-          <Button
-            onClick={() => setShowPublishModal(true)}
-            className="bg-cinnabar hover:bg-cinnabar-light text-rice shadow-lg shadow-cinnabar/20"
-          >
-            <Plus className="w-4 h-4 mr-1" />
-            {getPublishButtonText()}
-          </Button>
+          {activeTab === "faq" ? (
+            <Link href="/community/faq">
+              <Button className="bg-cinnabar hover:bg-cinnabar-light text-rice shadow-lg shadow-cinnabar/20">
+                <FileQuestion className="w-4 h-4 mr-1" />
+                查看全部FAQ
+              </Button>
+            </Link>
+          ) : (
+            <Button
+              onClick={() => setShowPublishModal(true)}
+              className="bg-cinnabar hover:bg-cinnabar-light text-rice shadow-lg shadow-cinnabar/20"
+            >
+              <Plus className="w-4 h-4 mr-1" />
+              {getPublishButtonText()}
+            </Button>
+          )}
         </div>
 
         {/* 内容区域 */}
@@ -452,6 +468,34 @@ export default function CommunityPage() {
                     onClick={() => setSelectedPost(diary)}
                   />
                 ))}
+              </div>
+            )}
+
+            {activeTab === "faq" && (
+              <div className="text-center py-16">
+                <FileQuestion className="w-16 h-16 text-gold/40 mx-auto mb-6" />
+                <h3 className="text-2xl font-serif-cn font-bold text-ink mb-4">
+                  修炼常见问题
+                </h3>
+                <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
+                  按阶段、级别、场景整理的常见问题解答，帮助同修解决修炼路上的疑惑
+                </p>
+                <div className="flex flex-wrap justify-center gap-4 mb-8">
+                  <div className="bg-gold/10 rounded-lg px-4 py-2 text-sm text-gold-dark">
+                    30+ 常见问题
+                  </div>
+                  <div className="bg-cinnabar/10 rounded-lg px-4 py-2 text-sm text-cinnabar">
+                    4 大阶段
+                  </div>
+                  <div className="bg-ink/10 rounded-lg px-4 py-2 text-sm text-ink-light">
+                    11 个场景
+                  </div>
+                </div>
+                <Link href="/community/faq">
+                  <Button className="bg-cinnabar hover:bg-cinnabar-light text-rice shadow-lg shadow-cinnabar/20 px-8">
+                    查看完整FAQ
+                  </Button>
+                </Link>
               </div>
             )}
           </motion.div>
